@@ -1,30 +1,28 @@
 package guru.qa.tests;
 
 import com.codeborne.selenide.CollectionCondition;
-import com.codeborne.selenide.Configuration;
-import org.junit.jupiter.api.BeforeAll;
+import guru.qa.pages.RegistrationPage;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
 
-import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$$x;
 
 
-public class PracticeFormWithPageObject {
+public class PracticeFormWithPageObject extends TestBase {
 
-    @BeforeAll
-    static void beforeAll(){
-        Configuration.startMaximized = true;
-    }
+    RegistrationPage registrationPage = new RegistrationPage();
+
 
     @Test
     void fillFromTest(){
-        open("https://demoqa.com/automation-practice-form");
-        $("#firstName").setValue("Viktor");
-        $("#lastName").setValue("Slon");
-        $("#userEmail").setValue("viktornuts@gmail.com");
-        $("[for='gender-radio-1']").click();
-        $("#userNumber").setValue("8955245541");
+        registrationPage.openPage()
+                .typeFirsName("Viktor")
+                .typeLastName("Slon")
+                .typeEmail("viktornuts@gmail.com")
+                .typeGenderMale()
+                .typeUserNumber("8955245541");
 
         $("#dateOfBirthInput").click();
         $("[class='react-datepicker__month-select']").selectOption("June");
@@ -37,9 +35,7 @@ public class PracticeFormWithPageObject {
         $("[for='hobbies-checkbox-1']").click();
         $("[for='hobbies-checkbox-2']").click();
 
-        File lesson = new File("src/test/java/guru/qa/files/lesson1.png");
-        String path = lesson.getAbsolutePath();
-        $("#uploadPicture").sendKeys(path);
+        $("#uploadPicture").uploadFile(new File("src/test/java/guru/qa/docs/lesson5.txt"));
 
         $("[placeholder='Current Address']").setValue("Nikolaya Shishka 21");
         $("[placeholder='Current Address']").scrollIntoView(true);
@@ -50,7 +46,7 @@ public class PracticeFormWithPageObject {
         //Assert
         $$x("//*[@class='modal-body']//td[2]").shouldHave(CollectionCondition.exactTexts(
                 "Viktor Slon", "viktornuts@gmail.com", "Male", "8955245541", "21 June,1990",
-                "English, Maths", "Sports, Reading", "lesson1.png", "Nikolaya Shishka 21", "Rajasthan Jaiselmer"));
+                "English, Maths", "Sports, Reading", "lesson5.txt", "Nikolaya Shishka 21", "Rajasthan Jaiselmer"));
 
     }
 

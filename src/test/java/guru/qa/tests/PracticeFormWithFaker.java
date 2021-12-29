@@ -10,21 +10,19 @@ import java.io.File;
 import static com.codeborne.selenide.Selenide.*;
 
 
-public class PracticeForm {
+public class PracticeFormWithFaker {
 
-    @BeforeAll
-    static void beforeAll() {
-        Configuration.browserSize = "1920x1080";
-        Configuration.baseUrl = "https://demoqa.com";
-    }
+//    @BeforeAll
+//    static void beforeAll(){
+//        Configuration.startMaximized = true;
+//    }
 
     @Test
-    void fillFromTest() {
-        open("/automation-practice-form");
+    void fillFromTest(){
+        open("https://demoqa.com/automation-practice-form");
         $("#firstName").setValue("Viktor");
         $("#lastName").setValue("Slon");
         $("#userEmail").setValue("viktornuts@gmail.com");
-
         $("[for='gender-radio-1']").click();
         $("#userNumber").setValue("8955245541");
 
@@ -54,8 +52,9 @@ public class PracticeForm {
                 "Viktor Slon", "viktornuts@gmail.com", "Male", "8955245541", "21 June,1990",
                 "English, Maths", "Sports, Reading", "lesson1.png", "Nikolaya Shishka 21", "Rajasthan Jaiselmer"));
 
-        // $(".table-responsive").shouldHave(text("Viktor"), text("Slon");
+
     }
+
 
 
 }
