@@ -2,6 +2,7 @@ package guru.qa.tests;
 
 import com.codeborne.selenide.CollectionCondition;
 import guru.qa.pages.RegistrationPage;
+import guru.qa.pages.components.CalendarComponent;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
@@ -24,10 +25,9 @@ public class PracticeFormWithPageObject extends TestBase {
                 .typeGenderMale()
                 .typeUserNumber("8955245541");
 
-        $("#dateOfBirthInput").click();
-        $("[class='react-datepicker__month-select']").selectOption("June");
-        $("[class='react-datepicker__year-select']").selectOption("1990");
-        $("[class*='react-datepicker__day--021']").click();
+        CalendarComponent calendarComponent = new CalendarComponent();
+        calendarComponent.setDate("28", "July", "1993");
+
 
         $("#subjectsInput").setValue("English").pressEnter();
         $("#subjectsInput").setValue("Maths").pressEnter();

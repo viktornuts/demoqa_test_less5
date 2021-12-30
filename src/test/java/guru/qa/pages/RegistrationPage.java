@@ -19,6 +19,7 @@ public class RegistrationPage {
             genderOtherInput = $("#genterWrapper").$(byText("Other"));
 
 
+
     public RegistrationPage openPage() {
 
         open("https://demoqa.com/automation-practice-form");
