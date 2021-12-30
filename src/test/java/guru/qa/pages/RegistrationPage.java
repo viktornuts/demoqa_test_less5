@@ -29,7 +29,6 @@ public class RegistrationPage {
             cityInput = $("#react-select-4-input");
 
 
-
     public RegistrationPage openPage() {
 
         open("https://demoqa.com/automation-practice-form");
@@ -62,61 +61,61 @@ public class RegistrationPage {
         return this;
     }
 
-    public RegistrationPage typeGenderMale(){
+    public RegistrationPage typeGenderMale() {
 
         genderMaleInput.click();
         return this;
     }
 
-    public RegistrationPage typeGenderFemale(){
+    public RegistrationPage typeGenderFemale() {
 
         genderFemaleInput.click();
         return this;
     }
 
-    public RegistrationPage typeGenderOther(){
+    public RegistrationPage typeGenderOther() {
 
         genderOtherInput.click();
         return this;
     }
 
-    public RegistrationPage typeSubject(String subject){
+    public RegistrationPage typeSubject(String subject) {
 
         subjectInput.setValue(subject).pressEnter();
         return this;
     }
 
-    public RegistrationPage typeHobbieSport(){
+    public RegistrationPage typeHobbieSport() {
 
         hobbieSportInput.click();
         return this;
     }
 
-    public RegistrationPage typeHobbieReading(){
+    public RegistrationPage typeHobbieReading() {
 
         hobbieReadingInput.click();
         return this;
     }
 
-    public RegistrationPage typeHobbieMusic(){
+    public RegistrationPage typeHobbieMusic() {
 
         hobbieMusicInput.click();
         return this;
     }
 
-    public RegistrationPage typeUploadPicture(String filePath){
+    public RegistrationPage typeUploadPicture(String filePath) {
 
         uploadPictureInput.uploadFile(new File(filePath));
         return this;
     }
 
-    public RegistrationPage typeCurrentAddress(String Address){
+    public RegistrationPage typeCurrentAddress(String Address) {
 
         currentAddressInput.scrollTo().setValue(Address);
         return this;
     }
 
-    public RegistrationPage typeState(String State){
+    public RegistrationPage typeState(String State) {
 
         stateInput.setValue(State).pressEnter();
         return this;
@@ -128,7 +127,7 @@ public class RegistrationPage {
         return this;
     }
 
-    public RegistrationPage assertForm(){
+    public RegistrationPage assertForm() {
         $$x("//*[@class='modal-body']//td[2]").shouldHave(CollectionCondition.exactTexts(
                 "Viktor Slon",
                 "viktornuts@gmail.com",

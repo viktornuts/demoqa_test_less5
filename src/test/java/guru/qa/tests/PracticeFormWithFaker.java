@@ -1,60 +1,70 @@
 package guru.qa.tests;
 
 import com.codeborne.selenide.CollectionCondition;
-import com.codeborne.selenide.Configuration;
-import org.junit.jupiter.api.BeforeAll;
+import com.github.javafaker.Faker;
+import guru.qa.pages.RegistrationPage;
+import guru.qa.pages.components.CalendarComponent;
 import org.junit.jupiter.api.Test;
 
-import java.io.File;
+import java.util.Locale;
 
-import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$$x;
 
 
-public class PracticeFormWithFaker {
+public class PracticeFormWithFaker extends TestBase {
 
-//    @BeforeAll
-//    static void beforeAll(){
-//        Configuration.startMaximized = true;
-//    }
+    RegistrationPage registrationPage = new RegistrationPage();
+
+    Faker faker = new Faker(new Locale("en"));
+    String firstName = faker.name().firstName();
+    String lastName = faker.name().lastName();
+    String email = faker.internet().emailAddress();
+    String userNumber = faker.phoneNumber().subscriberNumber(10);
+    int yearOfBirth = faker.number().numberBetween(1920, 2021);
+    String yearOfBirth1 = String.valueOf(yearOfBirth);
+    String currentAddress = faker.address().fullAddress();
 
     @Test
-    void fillFromTest(){
-        open("https://demoqa.com/automation-practice-form");
-        $("#firstName").setValue("Viktor");
-        $("#lastName").setValue("Slon");
-        $("#userEmail").setValue("viktornuts@gmail.com");
-        $("[for='gender-radio-1']").click();
-        $("#userNumber").setValue("8955245541");
+    void fillFromTest() {
+        registrationPage.openPage()
+                .typeFirsName(firstName)
+                .typeLastName(lastName)
+                .typeEmail(email)
+                .typeGenderMale()
+                .typeUserNumber(userNumber);
 
-        $("#dateOfBirthInput").click();
-        $("[class='react-datepicker__month-select']").selectOption("June");
-        $("[class='react-datepicker__year-select']").selectOption("1990");
-        $("[class*='react-datepicker__day--021']").click();
+        CalendarComponent calendarComponent = new CalendarComponent();
+        calendarComponent.setDate("21", "June", yearOfBirth1);
 
-        $("#subjectsInput").setValue("English").pressEnter();
-        $("#subjectsInput").setValue("Maths").pressEnter();
-
-        $("[for='hobbies-checkbox-1']").click();
-        $("[for='hobbies-checkbox-2']").click();
-
-        File lesson = new File("src/test/java/guru/qa/docs/lesson5.txt");
-        String path = lesson.getAbsolutePath();
-        $("#uploadPicture").sendKeys(path);
-
-        $("[placeholder='Current Address']").setValue("Nikolaya Shishka 21");
-        $("[placeholder='Current Address']").scrollIntoView(true);
-        $("#react-select-3-input").setValue("Raj").pressEnter();
-        $("#react-select-4-input").setValue("Jaise").pressEnter();
+        registrationPage.typeSubject("English")
+                .typeSubject("Math")
+                .typeSubject("Commerce")
+                .typeHobbieSport()
+                .typeHobbieMusic()
+                .typeHobbieReading()
+                .typeUploadPicture("src/test/java/guru/qa/docs/lesson5.txt")
+                .typeCurrentAddress(currentAddress)
+                .typeState("Raj")
+                .typeCity("Jaise");
         $("#submit").click();
 
         //Assert
+
         $$x("//*[@class='modal-body']//td[2]").shouldHave(CollectionCondition.exactTexts(
-                "Viktor Slon", "viktornuts@gmail.com", "Male", "8955245541", "21 June,1990",
-                "English, Maths", "Sports, Reading", "lesson5.png", "Nikolaya Shishka 21", "Rajasthan Jaiselmer"));
+                firstName + " " + lastName,
+                email,
+                "Male",
+                userNumber,
+                "21 June," + yearOfBirth1,
+                "English, Maths, Commerce",
+                "Sports, Music, Reading",
+                "lesson5.txt",
+                currentAddress,
+                "Rajasthan Jaiselmer"));
 
 
     }
-
 
 
 }

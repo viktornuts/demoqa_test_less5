@@ -1,8 +1,6 @@
 package guru.qa.tests;
 
-public class TestData
-{
-
+public class TestData {
 
 
 }
