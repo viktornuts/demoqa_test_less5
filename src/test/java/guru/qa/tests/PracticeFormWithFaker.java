@@ -37,7 +37,7 @@ public class PracticeFormWithFaker {
         $("[for='hobbies-checkbox-1']").click();
         $("[for='hobbies-checkbox-2']").click();
 
-        File lesson = new File("src/test/java/guru/qa/files/lesson1.png");
+        File lesson = new File("src/test/java/guru/qa/docs/lesson5.txt");
         String path = lesson.getAbsolutePath();
         $("#uploadPicture").sendKeys(path);
 
@@ -50,7 +50,7 @@ public class PracticeFormWithFaker {
         //Assert
         $$x("//*[@class='modal-body']//td[2]").shouldHave(CollectionCondition.exactTexts(
                 "Viktor Slon", "viktornuts@gmail.com", "Male", "8955245541", "21 June,1990",
-                "English, Maths", "Sports, Reading", "lesson1.png", "Nikolaya Shishka 21", "Rajasthan Jaiselmer"));
+                "English, Maths", "Sports, Reading", "lesson5.png", "Nikolaya Shishka 21", "Rajasthan Jaiselmer"));
 
 
     }
