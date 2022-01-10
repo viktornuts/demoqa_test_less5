@@ -14,6 +14,7 @@ import static com.codeborne.selenide.Selenide.$$x;
 
 public class PracticeFormWithFaker extends TestBase {
 
+    CalendarComponent calendarComponent = new CalendarComponent();
     RegistrationPage registrationPage = new RegistrationPage();
 
     Faker faker = new Faker(new Locale("en"));
@@ -25,6 +26,7 @@ public class PracticeFormWithFaker extends TestBase {
     String yearOfBirth1 = String.valueOf(yearOfBirth);
     String currentAddress = faker.address().fullAddress();
 
+
     @Test
     void fillFromTest() {
         registrationPage.openPage()
@@ -34,7 +36,6 @@ public class PracticeFormWithFaker extends TestBase {
                 .typeGenderMale()
                 .typeUserNumber(userNumber);
 
-        CalendarComponent calendarComponent = new CalendarComponent();
         calendarComponent.setDate("21", "June", yearOfBirth1);
 
         registrationPage.typeSubject("English")

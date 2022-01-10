@@ -38,92 +38,92 @@ public class RegistrationPage {
 
 
     public RegistrationPage typeFirsName(String firstName) {
-
         firstNameInput.setValue(firstName);
+
         return this;
     }
 
     public RegistrationPage typeLastName(String lastName) {
-
         lastNameInput.setValue(lastName);
+
         return this;
     }
 
     public RegistrationPage typeEmail(String email) {
-
         emailInput.setValue(email);
+
         return this;
     }
 
     public RegistrationPage typeUserNumber(String number) {
-
         userNumberInput.setValue(number);
+
         return this;
     }
 
     public RegistrationPage typeGenderMale() {
-
         genderMaleInput.click();
+
         return this;
     }
 
     public RegistrationPage typeGenderFemale() {
-
         genderFemaleInput.click();
+
         return this;
     }
 
     public RegistrationPage typeGenderOther() {
-
         genderOtherInput.click();
+
         return this;
     }
 
     public RegistrationPage typeSubject(String subject) {
-
         subjectInput.setValue(subject).pressEnter();
+
         return this;
     }
 
     public RegistrationPage typeHobbieSport() {
-
         hobbieSportInput.click();
+
         return this;
     }
 
     public RegistrationPage typeHobbieReading() {
-
         hobbieReadingInput.click();
+
         return this;
     }
 
     public RegistrationPage typeHobbieMusic() {
-
         hobbieMusicInput.click();
+
         return this;
     }
 
     public RegistrationPage typeUploadPicture(String filePath) {
-
         uploadPictureInput.uploadFile(new File(filePath));
+
         return this;
     }
 
     public RegistrationPage typeCurrentAddress(String Address) {
-
         currentAddressInput.scrollTo().setValue(Address);
+
         return this;
     }
 
     public RegistrationPage typeState(String State) {
-
         stateInput.setValue(State).pressEnter();
+
         return this;
     }
 
     public RegistrationPage typeCity(String City) {
-
         cityInput.setValue(City).pressEnter();
+
         return this;
     }
 
