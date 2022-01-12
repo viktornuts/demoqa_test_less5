@@ -8,7 +8,5 @@ public class TestBase {
     @BeforeAll
     static void beforeAll() {
         Configuration.startMaximized = true;
-        Configuration.baseUrl = "https://demoqa.com";
-
     }
 }

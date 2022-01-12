@@ -4,6 +4,8 @@ import com.codeborne.selenide.CollectionCondition;
 import com.github.javafaker.Faker;
 import guru.qa.pages.RegistrationPage;
 import guru.qa.pages.components.CalendarComponent;
+import io.qameta.allure.*;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.Locale;
@@ -28,6 +30,12 @@ public class PracticeFormWithFaker extends TestBase {
 
 
     @Test
+    @Owner("serdobintsevvm")
+    @Feature("Registration")
+    @Story("Саморегистрация пользователя")
+    @DisplayName("Саморегистрация не авторизованного пользователя")
+    @Severity(SeverityLevel.BLOCKER)
+    @Link(value = "guruqa", url = "https://guruqa.com")
     void fillFromTest() {
         registrationPage.openPage()
                 .typeFirsName(firstName)
